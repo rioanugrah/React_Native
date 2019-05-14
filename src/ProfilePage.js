@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-
+import MenuButton from '../components/MenuButton'
 export default class ProfilePage extends Component {
     _goToHome=()=>{
         this.props.navigation.navigate('Home')
@@ -14,6 +14,7 @@ export default class ProfilePage extends Component {
     render() {
       return (
         <View style={styles.container}>
+          <MenuButton navigation={this.props.navigation}/>
           <Text> This is your Profile </Text>
               <View style={styles.button}>
               <Button
