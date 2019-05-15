@@ -6,9 +6,9 @@ import ProfilePage from '../src/ProfilePage';
 import LinkScreen from '../src/LinkScreen';
 import SettingScreen from '../src/SettingScreen';
 import MenuDrawer from '../components/MenuDrawer';
+import CameraScreen from '../screen/CameraScreen';
 
 const WIDTH = Dimensions.get('window').width;
-
 const DrawerConfig = {
     drawerWidth: WIDTH*0.83,
     contentComponent: ({navigation}) => {
@@ -34,6 +34,9 @@ const DrawerNavigator = createDrawerNavigator(
     SettingScreen:{
         screen:SettingScreen
         },
+    Camera:{
+        screen:CameraScreen
+    }
     },
     DrawerConfig
 );
