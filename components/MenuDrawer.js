@@ -31,11 +31,12 @@ export default class MenuDrawer extends React.Component{
                     {this.navLink('Home', 'Home')}
                     {this.navLink('Links', 'Link')}
                     {this.navLink('SettingScreen', 'Setting')}
+                    {this.navLink('Camera', 'Camera')}
                 </View>
                 </ScrollView>
                 <View style={styles.footer}>
                     <Text style={styles.description}>Version</Text>
-                    <Text style={styles.version}>v1.0</Text>
+                    <Text style={styles.version}>v1.2</Text>
                 </View>
             </View>
         )
