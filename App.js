@@ -23,8 +23,8 @@ export default class App extends React.Component {
   render() {
     return (
       // <HomePage/>
-      <AppContainer/>
-      // <DrawerNavigator/>
+      // <AppContainer/>
+      <DrawerNavigator/>
     );
   }
 }
