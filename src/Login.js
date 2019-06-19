@@ -1,38 +1,70 @@
 import React, {Component} from 'react';
-import {View,TextInput,Image,StyleSheet,Button} from 'react-native';
-
+import {Text,View,TextInput,Image,StyleSheet,Button,KeyboardAvoidingView,ActivityIndicator} from 'react-native';
+import firebase from "firebase";
 export default class Login extends Component {
   constructor(props){
     super(props)
     this.state={
-      username:'',
-      password:''
-    };
-  };
-  static navigationOptions = {title:'Login', header:null};
-  _onPressLogin=()=>{
-    if (this.state.username == 'admin' && this.state.password =='12345'){
-      alert('Login Sukses');
-      this.setState({username:'',password:''});
-      this.props.navigation.navigate('Home');
-    } else{
-      alert('Login Gagal');
-      this.setState({password:''});
+      email:'',
+      password:'',
+      error:'',
+      success:'',
+      loading:false
     }
   }
+  static navigationOptions = {title:'Login', header:null};
+  _onPressLogin=()=>{
+    this.setState({
+      success:'',
+      error:'',
+      loading:true
+    });
+    const{email,password} = this.state;
+    firebase.auth().signInWithEmailAndPassword(email,password)
+    .then(data => {
+      this.setState({
+        email:'',
+        password:'',
+        success:'Login Success',
+        loading:false
+      });
+      this.props.navigation.navigate('Home');
+    }).catch(e => {
+      this.setState({
+        error:'Login failed',
+        success:'',
+        loading:false
+      })
+    })
+    // if (this.state.username == 'admin' && this.state.password =='12345'){
+    //   alert('Login Sukses');
+    //   this.setState({username:'',password:''});
+    //   this.props.navigation.navigate('Home');
+    // } else{
+    //   alert('Login Gagal');
+    //   this.setState({password:''});
+    // }
+  }
   _onPressCancel=()=>{
-      this.setState({username:'',password:''});
+      this.setState({email:'',password:''});
+  }
+  _loading(){
+    if (this.state.loading){
+      return <ActivityIndicator/>
+    }
+    return <Text>{this.state.success}{this.state.error}</Text>
   }
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding enabled">
           <Image style={styles.image}
           source={require('../assets/logo.png')}
           />
+          {this._loading()}
           <TextInput style={styles.input}
-          placeholder="Your Username"
-          value={this.state.username}
-          onChangeText={(inputan)=>this.setState({username:inputan})}
+          placeholder="Your email"
+          value={this.state.email}
+          onChangeText={(inputan)=>this.setState({email:inputan})}
           />
           <TextInput style={styles.input}
           placeholder="Your Password"
@@ -54,7 +86,7 @@ export default class Login extends Component {
             color="#7FD6E7"
             />
           </View>   
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
