@@ -7,6 +7,9 @@ import LinkScreen from '../src/LinkScreen';
 import SettingScreen from '../src/SettingScreen';
 import MenuDrawer from '../components/MenuDrawer';
 import CameraScreen from '../screen/CameraScreen';
+import LocationScreen from '../screen/LocationScreen';
+import MapScreen from '../screen/MapScreen';
+import TodoScreen from '../screen/TodoScreen';
 
 const WIDTH = Dimensions.get('window').width;
 const DrawerConfig = {
@@ -36,6 +39,15 @@ const DrawerNavigator = createDrawerNavigator(
         },
     Camera:{
         screen:CameraScreen
+        },
+    Location:{
+        screen:LocationScreen
+    },
+    Map:{
+        screen:MapScreen
+    },
+    Todo:{
+        screen:TodoScreen
     }
     },
     DrawerConfig
