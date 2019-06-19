@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Platform, ScrollView, Dimensions, StyleSheet, TouchableOpacity,Image} from 'react-native';
-
+import firebase from "firebase";
 
 const WIDTH = Dimensions.get('window').width
 const HEIGHT = Dimensions.get('window').height
@@ -13,6 +13,14 @@ export default class MenuDrawer extends React.Component{
             </TouchableOpacity>
         )
     }
+    _signOut = () =>{
+        firebase.auth().signOut().then(function (){
+            this.props.navigation.navigate('Auth');
+        }).catch(function (error){
+            console.log(error)
+        });
+    };
+
     render(){
         return(
             <View style={styles.container}>
@@ -32,6 +40,12 @@ export default class MenuDrawer extends React.Component{
                     {this.navLink('Links', 'Link')}
                     {this.navLink('SettingScreen', 'Setting')}
                     {this.navLink('Camera', 'Camera')}
+                    {this.navLink('Location', 'Location')}
+                    {this.navLink('Map', 'Map')}
+                    {this.navLink('Todo', 'Todo')}
+                    <TouchableOpacity style={{height:50}} onPress={this._signOut}>
+                        <Text style={styles.link}>Logout</Text>
+                    </TouchableOpacity>
                 </View>
                 </ScrollView>
                 <View style={styles.footer}>
