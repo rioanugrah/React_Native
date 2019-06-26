@@ -4,6 +4,9 @@ import * as firebase from "firebase";
 import 'firebase/firebase';
 
 export default class ToDoScreen extends Component {
+  static navigationOptions = {
+        title: 'todos',
+    };
   constructor(props) {
     super(props);
     this.ref = firebase.firestore().collection('todos');
